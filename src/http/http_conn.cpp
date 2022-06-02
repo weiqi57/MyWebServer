@@ -11,7 +11,7 @@ const char* error_500_title = "Internal Error";
 const char* error_500_form = "There was an unusual problem serving the requested file.\n";
 
 // 网站根目录，文件夹内存放请求的资源和跳转的html文件
-const char* doc_root = "/home/v7/linuxLearning/webServer/res";
+const char* doc_root = "/home/v7/linuxLearning/webServer/resources";
 
 unordered_map<string, string> umapUserPasswd;
 locker sqlLock;
@@ -69,8 +69,8 @@ void http_conn::init_mysql(sqlConnPool* sqlPool) {
 
     int res = mysql_query(aMysqlQuery, "SELECT username,passwd FROM user");
     if (res) {
-        fprintf(stderr, "SELECT error: %s\n", mysql_error(aMysqlQuery));
-        LOG_INFO("%s", "mysql_query Error");
+        // fprintf(stderr, "SELECT error: %s\n", mysql_error(aMysqlQuery));
+        LOG_ERROR("%s", "mysql_query Error");
     }
     MYSQL_RES* query_res = mysql_store_result(aMysqlQuery);
 

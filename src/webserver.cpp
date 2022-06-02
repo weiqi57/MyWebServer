@@ -57,7 +57,14 @@ void webServer::eventListen() {
     m_listenfd = socket(PF_INET, SOCK_STREAM, 0);
     assert(m_listenfd >= 0);
 
-    // TODO 优雅关闭
+    // struct linger{
+    //     int l_onoff;
+    //     int l_linger;
+    // };
+    // 当tmp={1,0}时，close系统调用会立即返回，tcp模块会丢弃被关闭socket对应tcp发送缓冲区中残留的数据
+    // 设置tmp={1,1},若该socket为阻塞的，close将等待一段l_linger的时间，直到发送完所有残留数据，并得到对方确认
+    struct linger tmp = {1, 1};
+    setsockopt(m_listenfd, SOL_SOCKET, SO_LINGER, &tmp, sizeof(tmp));
 
     struct sockaddr_in address;
     bzero(&address, sizeof(address));
@@ -90,6 +97,7 @@ void webServer::eventListen() {
     assert(ret != -1);
     m_util.setNonblocking(m_pipefd[1]);
     m_util.addfd(m_epollfd, m_pipefd[0], false, 1);
+
     // 传递给主循环的信号值，只关注SIGALRM和SIGTERM
     m_util.addsig(SIGPIPE, SIG_IGN, true);
     m_util.addsig(SIGALRM, m_util.sig_alarm_handler, false);
