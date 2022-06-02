@@ -1,0 +1,135 @@
+2022/06/02 13:28:57 [info]: timer tick
+2022/06/02 13:29:02 [info]: timer tick
+2022/06/02 13:29:07 [info]: timer tick
+2022/06/02 13:29:08 [info]: NEW USER 172.20.15.131
+2022/06/02 13:29:08 [info]: dealRead with the client(172.20.15.131)
+2022/06/02 13:29:08 [info]: HTTP request line is: POST /2CGISQL.cgi HTTP/1.1
+2022/06/02 13:29:08 [info]: HTTP request line is: Host: 172.20.15.50:9000
+2022/06/02 13:29:08 [info]: HTTP request line is: Connection: keep-alive
+2022/06/02 13:29:08 [info]: HTTP request line is: Content-Length: 19
+2022/06/02 13:29:08 [info]: HTTP request line is: Cache-Control: max-age=0
+2022/06/02 13:29:08 [info]: HTTP request line is: Upgrade-Insecure-Requests: 1
+2022/06/02 13:29:08 [info]: HTTP request line is: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36
+2022/06/02 13:29:08 [info]: HTTP request line is: Origin: http://172.20.15.50:9000
+2022/06/02 13:29:08 [info]: HTTP request line is: Content-Type: application/x-www-form-urlencoded
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+2022/06/02 13:29:08 [info]: HTTP request line is: Referer: http://172.20.15.50:9000/1
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept-Encoding: gzip, deflate
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept-Language: zh-CN,zh;q=0.9
+2022/06/02 13:29:08 [info]: HTTP request line is: 
+2022/06/02 13:29:08 [info]: HTTP request line is: user=61&password=61
+2022/06/02 13:29:08 [info]: m_url is /home/v7/linuxLearning/webServer/resources/welcome.html
+2022/06/02 13:29:08 [debug]: finish process_read()
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 718
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 718
+Connnection: keep-alive
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 718
+Connnection: keep-alive
+
+
+2022/06/02 13:29:08 [debug]: finish process_write()
+2022/06/02 13:29:08 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:08 [info]: dealRead with the client(172.20.15.131)
+2022/06/02 13:29:08 [info]: HTTP request line is: GET /favicon.ico HTTP/1.1
+2022/06/02 13:29:08 [info]: HTTP request line is: Host: 172.20.15.50:9000
+2022/06/02 13:29:08 [info]: HTTP request line is: Connection: keep-alive
+2022/06/02 13:29:08 [info]: HTTP request line is: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2022/06/02 13:29:08 [info]: HTTP request line is: Referer: http://172.20.15.50:9000/2CGISQL.cgi
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept-Encoding: gzip, deflate
+2022/06/02 13:29:08 [info]: HTTP request line is: Accept-Language: zh-CN,zh;q=0.9
+2022/06/02 13:29:08 [info]: HTTP request line is: 
+2022/06/02 13:29:08 [info]: m_url is /home/v7/linuxLearning/webServer/resources/favicon.ico
+2022/06/02 13:29:08 [debug]: finish process_read()
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 15406
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 15406
+Connnection: keep-alive
+
+2022/06/02 13:29:08 [info]: request:HTTP/1.1 200 OK
+Content-Length: 15406
+Connnection: keep-alive
+
+
+2022/06/02 13:29:08 [debug]: finish process_write()
+2022/06/02 13:29:08 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealRead with the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: HTTP request line is: POST /5 HTTP/1.1
+2022/06/02 13:29:11 [info]: HTTP request line is: Host: 172.20.15.50:9000
+2022/06/02 13:29:11 [info]: HTTP request line is: Referer: http://172.20.15.50:9000/2CGISQL.cgi
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept-Encoding: gzip, deflate
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept-Language: zh-CN,zh;q=0.9
+2022/06/02 13:29:11 [info]: HTTP request line is: Connection: keep-alive
+2022/06/02 13:29:11 [info]: HTTP request line is: Content-Length: 0
+2022/06/02 13:29:11 [info]: HTTP request line is: Cache-Control: max-age=0
+2022/06/02 13:29:11 [info]: HTTP request line is: Upgrade-Insecure-Requests: 1
+2022/06/02 13:29:11 [info]: HTTP request line is: Origin: http://172.20.15.50:9000
+2022/06/02 13:29:11 [info]: HTTP request line is: Content-Type: application/x-www-form-urlencoded
+2022/06/02 13:29:11 [info]: HTTP request line is: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+2022/06/02 13:29:11 [info]: HTTP request line is: 
+2022/06/02 13:29:11 [debug]: finish process_read()
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 333
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 333
+Connnection: keep-alive
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 333
+Connnection: keep-alive
+
+
+2022/06/02 13:29:11 [debug]: finish process_write()
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealRead with the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: HTTP request line is: GET /cat2.gif HTTP/1.1
+2022/06/02 13:29:11 [info]: HTTP request line is: Host: 172.20.15.50:9000
+2022/06/02 13:29:11 [info]: HTTP request line is: Connection: keep-alive
+2022/06/02 13:29:11 [info]: HTTP request line is: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2022/06/02 13:29:11 [info]: HTTP request line is: Referer: http://172.20.15.50:9000/5
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept-Encoding: gzip, deflate
+2022/06/02 13:29:11 [info]: HTTP request line is: Accept-Language: zh-CN,zh;q=0.9
+2022/06/02 13:29:11 [info]: HTTP request line is: 
+2022/06/02 13:29:11 [info]: m_url is /home/v7/linuxLearning/webServer/resources/cat2.gif
+2022/06/02 13:29:11 [debug]: finish process_read()
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 32561629
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 32561629
+Connnection: keep-alive
+
+2022/06/02 13:29:11 [info]: request:HTTP/1.1 200 OK
+Content-Length: 32561629
+Connnection: keep-alive
+
+
+2022/06/02 13:29:11 [debug]: finish process_write()
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:11 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:12 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:12 [info]: dealWrite to the client(172.20.15.131)
+2022/06/02 13:29:12 [info]: dealWrite to the client(172.20.15.131)

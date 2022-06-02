@@ -28,12 +28,11 @@
 
 （`-c 10000` 并发连接数为10000 `-t 5` 测试时间5s）
 
-![webbench result](./res/webbenchRes.png)
+![webbench result](./resources/webbenchRes.png)
 
 
 ## 待更新
 * 使用RAII手法封装互斥器(pthrea_mutex_t)、 条件变量(pthread_cond_t)等线程同步互斥机制，使用RAII管理文件描述符等资源
-* 优雅断开服务器连接方式
 * 在有限状态机中采用unordered_map来记录参数方便使用
 * 定时器使用小根堆优化复杂度
 * 更新前端功能

@@ -69,8 +69,7 @@ void http_conn::init_mysql(sqlConnPool* sqlPool) {
 
     int res = mysql_query(aMysqlQuery, "SELECT username,passwd FROM user");
     if (res) {
-        // fprintf(stderr, "SELECT error: %s\n", mysql_error(aMysqlQuery));
-        LOG_ERROR("%s", "mysql_query Error");
+        LOG_ERROR("%s", "mysql_query SELECT Error");
     }
     MYSQL_RES* query_res = mysql_store_result(aMysqlQuery);
 
@@ -79,11 +78,6 @@ void http_conn::init_mysql(sqlConnPool* sqlPool) {
         string tempPasswd(row[1]);
         umapUserPasswd.insert(make_pair(tempName, tempPasswd));
     }
-    // std::cout << "umapUserPasswd is :" << std::endl;
-    // for (auto it = umapUserPasswd.begin(); it != umapUserPasswd.end(); ++it) {
-    //     std::cout << "(" << it->first << "," << it->second << ") ";
-    // }
-    // std::cout << std::endl;
 }
 
 void http_conn::init(int sockfd, const sockaddr_in& addr, int closeLog, sqlConnPool* sqlPool) {
@@ -91,9 +85,6 @@ void http_conn::init(int sockfd, const sockaddr_in& addr, int closeLog, sqlConnP
     m_address = addr;
     m_closeLog = closeLog;
     h_sqlPool = sqlPool;
-    // 端口复用,已在main函数中定义
-    // int reuse = 1;
-    // setsockopt(m_sockfd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
 
     addfd(m_epollfd, m_sockfd, true);
     m_user_count++;
@@ -188,8 +179,6 @@ http_conn::HTTP_CODE http_conn::process_read() {
         // m_checked_idx表示从状态机在m_read_buf中读取的位置
         m_start_line = m_checked_idx;
 
-        // printf("in process_read()\tgot 1 http line,as follows:\n%s\n", text);
-        // printf("%s\n", text);
         // m_check_state 记录主状态机当前的状态
         switch (m_check_state) {
             // 分析请求行
@@ -523,9 +512,9 @@ void http_conn::unmap() {
 bool http_conn::process_write(HTTP_CODE ret) {
     switch (ret) {
         case INTERNAL_ERROR: {
-            //状态行
+            //状态行/响应行
             add_status_line(500, error_500_title);
-            //消息报头
+            //消息报头/响应头
             add_headers(strlen(error_500_form));
             if (!add_content(error_500_form)) {
                 return false;
@@ -557,6 +546,7 @@ bool http_conn::process_write(HTTP_CODE ret) {
             break;
         }
         case FILE_REQUEST: {
+            //状态行
             add_status_line(200, ok_200_title);
             //如果请求的资源存在
             if (m_file_stat.st_size != 0) {
@@ -571,7 +561,7 @@ bool http_conn::process_write(HTTP_CODE ret) {
 
                 //发送的全部数据为响应报文头部信息和文件大小
                 bytes_to_send = m_write_idx + m_file_stat.st_size;
-                // LOG_INFO("run in here  bytes_to_send=%d\n", bytes_to_send);
+                // LOG_INFO("FILE_REQUEST  bytes_to_send=%d\n", bytes_to_send);
                 return true;
             }
             // 如果请求的资源大小为0，则返回空白html文件
@@ -588,7 +578,8 @@ bool http_conn::process_write(HTTP_CODE ret) {
             return false;
         }
     }
-    // 除FILE_REQUEST状态外，其余状态只申请一个iovec，指向响应报文缓冲区
+    // 除FILE_REQUEST状态外，其余状态只写回状态行
+    // 申请一个iovec，指向响应报文缓冲区
     m_iv[0].iov_base = m_write_buf;
     m_iv[0].iov_len = m_write_idx;
     m_iv_count = 1;
@@ -734,7 +725,6 @@ bool http_conn::write() {
         }
         //继续发送第一个iovec头部信息的数据
         else {
-            // m_iv[0].iov_base = m_write_buf + bytes_to_send;
             m_iv[0].iov_base = m_write_buf + bytes_have_send;
             m_iv[0].iov_len = m_iv[0].iov_len - bytes_have_send;
         }
@@ -743,12 +733,14 @@ bool http_conn::write() {
         if (bytes_to_send <= 0) {
             unmap();
             modfd(m_epollfd, m_sockfd, EPOLLIN);
+
             // 浏览器的请求为长连接
             if (m_linger) {
                 //重新初始化HTTP对象
                 init();
                 return true;
             } else {
+                // 关闭改socket连接
                 return false;
             }
         }
@@ -760,7 +752,7 @@ void http_conn::process() {
     // 报文解析
     HTTP_CODE read_ret = process_read();
     if (read_ret == NO_REQUEST) {
-        // 注册并监听读事件
+        // 注册并监听读事件，继续读数据
         modfd(m_epollfd, m_sockfd, EPOLLIN);
         return;
     }

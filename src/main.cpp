@@ -30,9 +30,6 @@ int main(int argc, char* argv[]) {
     //线程池
     server.threadPool();
 
-    //触发模式
-    // server.triggerMode();
-
     //监听
     server.eventListen();
 

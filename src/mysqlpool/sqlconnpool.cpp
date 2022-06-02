@@ -22,14 +22,12 @@ void sqlConnPool::initSqlConnPool(string serverHost, string userName, string pas
         MYSQL* conn = NULL;
         conn = mysql_init(NULL);
         if (conn == NULL) {
-            printf("mysql_init failed!\n");
             LOG_ERROR("%s", "mysql_init failed!");
             exit(1);
         }
         conn = mysql_real_connect(conn, serverHost.c_str(), sqlUserName.c_str(), sqlPasswd.c_str(), sqlDatabaseName.c_str(), 0, NULL, 0);
 
         if (conn == NULL) {
-            printf("Connection failed!\n");
             LOG_ERROR("%s", "Connection failed!");
             exit(1);
         }

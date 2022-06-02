@@ -1,9 +1,7 @@
 #ifndef THREADPOOL_H
 #define THREADPOOL_H
-///////////////////////////////////////////////////////
-// 半同步/半反应堆线程池
-#include <pthread.h>
 
+#include <pthread.h>
 #include <cstdio>
 #include <exception>
 #include <list>
