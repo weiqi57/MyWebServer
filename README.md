@@ -21,6 +21,53 @@
 * Visual Studio Code
 * MySQL 5.7.38
 
+## 文件说明 
+
+.  
+├── bin&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;可执行文件  
+│   └── server  
+├── build     
+│   └── makefile  
+├── log&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;存放日志文件       
+├── resources&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;静态资源  
+│   ├── favicon.ico  
+│   ├── homePage.html  
+│   ├── loginError.html  
+│   ├── ...  
+├── src&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;源代码  
+│   ├── http  
+│   │   ├── http_conn.cpp  
+│   │   ├── http_conn.h  
+│   │   └── README.md  
+│   ├── lock  
+│   │   ├── locker.h  
+│   │   └── README.md  
+│   ├── log  
+│   │   ├── blockqueue.h  
+│   │   ├── mylog.cpp  
+│   │   ├── mylog.h  
+│   │   └── README.md   
+│   ├── mysqlpool  
+│   │   ├── README.md  
+│   │   ├── sqlconnpool.cpp  
+│   │   └── sqlconnpool.h  
+│   ├── threadpool  
+│   │   ├── README.md  
+│   │   └── threadpool.h  
+│   ├── timer  
+│   │   ├── README.md  
+│   │   ├── timer.cpp  
+│   │   └── timer.h  
+│   ├── main.cpp   
+│   ├── webserver.cpp  
+│   └── webserver.h  
+├── webbench&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;压力测试  
+│   ├── README.md  
+│   └── webbench-1.5  
+├── Makefile      
+└── README.md
+
+
 ## 压力测试
 关闭日志功能后，使用webbench第三方工具，完成压力测试，结果如下
 
@@ -36,3 +83,4 @@
 * 在有限状态机中采用unordered_map来记录参数方便使用
 * 定时器使用小根堆优化复杂度
 * 更新前端功能
+
