@@ -35,18 +35,7 @@ class mylog {
     ~mylog();
 
     // 异步写日志
-    void* async_write_log() {
-        string single_log;
-
-        // 从阻塞队列中取出一条日志内容，写入到文件m_fp中
-        while (m_log_queue->dequeue(single_log)) {
-            m_mutex.lock();
-            // fputs将single_log写入到m_fp
-            fputs(single_log.c_str(), m_fp);
-            m_mutex.unlock();
-        }
-        return NULL;
-    }
+    void* async_write_log();
 
    private:
     // 路径名

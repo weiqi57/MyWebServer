@@ -101,8 +101,6 @@ void timerList::tick() {
     if (!head) {
         return;
     }
-    // LOG_INFO("%s", "timer tick, delete an inactive connection");
-    // mylog::get_instance()->flush();
 
     time_t time_now = time(NULL);
     timerClass* currTimer = head;

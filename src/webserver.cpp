@@ -34,7 +34,7 @@ void webServer::init(string serverIP, int serverPORT, int threadNum, int logMode
 
 void webServer::writeLog() {
     if (m_closeLog == 0) {
-        if (m_logMode == 1) {
+        if (m_logMode == 0) {
             mylog::get_instance()->init("ServerLog", m_closeLog, 0);
         } else {
             mylog::get_instance()->init("ServerLog", m_closeLog, 8);
@@ -50,7 +50,7 @@ void webServer::sqlPool() {
 }
 
 void webServer::threadPool() {
-    m_pool = new threadpool<http_conn>;
+    m_pool = new threadpool<http_conn>(m_threadNum);
 }
 
 void webServer::eventListen() {
@@ -156,7 +156,7 @@ void webServer::eventLoop() {
         // 包括删除定时器到期的任务 并重新定时以继续进行超时检测
         if (timeout) {
             m_util.timerHandler();
-            LOG_INFO("%s", "timer tick");
+            LOG_INFO("%s", "timer tick,process a timer event");
             timeout = false;
         }
     }

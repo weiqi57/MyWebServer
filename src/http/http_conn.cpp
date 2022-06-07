@@ -354,7 +354,7 @@ http_conn::HTTP_CODE http_conn::parse_content(char* text) {
     return NO_REQUEST;
 }
 
-// 当得到一个完整，正确的HTTP请求时，分析目标文件的属性，若目标文件？存在，对所有用户可读且不是目录
+// 当得到一个完整，正确的HTTP请求时，分析目标文件的属性，若目标文件存在，对所有用户可读且不是目录
 // 则使用mmap将其映射到内存地址m_file_address处，并告诉调用者获取文件成功
 http_conn::HTTP_CODE http_conn::do_request() {
     // 将初始化的m_real_file赋值为网站根目录
@@ -613,7 +613,7 @@ bool http_conn::add_response(const char* format, ...) {
 
     // 宏va_end来清理赋予va_list变量的内存。
     va_end(arg_list);
-    LOG_INFO("request:%s", m_write_buf);
+    LOG_INFO("response message to write is:%s", m_write_buf);
 
     return true;
 }

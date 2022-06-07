@@ -14,12 +14,12 @@ class threadpool {
     threadpool(int thread_number = 8, int max_requests = 10000);
     ~threadpool();
     // 往请求队列添加任务
-    bool append(T *request);
+    bool append(T* request);
 
    private:
     // 工作线程运行的函数，不断从工作队列中取出任务并执行
     // 注意该函数设置为静态的，因为C++的pthread_create第三个参数必须指向静态函数
-    static void *worker(void *arg);
+    static void* worker(void* arg);
     void run();
 
    private:
@@ -28,9 +28,9 @@ class threadpool {
     // 请求队列中允许的最大请求数
     int m_max_request;
     // 描述线程池的数组，其大小为m_thread_number
-    pthread_t *m_threads;
+    pthread_t* m_threads;
     // 请求队列
-    std::list<T *> m_workqueue;
+    std::list<T*> m_workqueue;
     // 保护请求队列的互斥锁
     locker m_queuelocker;
     // 使用这个信号量标识是否有任务需要处理
@@ -40,11 +40,7 @@ class threadpool {
 };
 
 template <typename T>
-threadpool<T>::threadpool(int thread_number, int max_request)
-    : m_thread_number(thread_number),
-      m_max_request(max_request),
-      m_threads(NULL),
-      m_stop(false) {
+threadpool<T>::threadpool(int thread_number, int max_request) : m_thread_number(thread_number), m_max_request(max_request), m_threads(NULL), m_stop(false) {
     if ((thread_number <= 0) || (max_request < 0)) {
         throw std::exception();
     }
@@ -57,8 +53,8 @@ threadpool<T>::threadpool(int thread_number, int max_request)
     // 创建m_thread_number个线程，并将它们都设置为脱离线程
     for (int i = 0; i < m_thread_number; i++) {
         printf("create the %dth thread\n", i);
-        // 注意第一个参数为指针，最后一次参数this指针，用于传递当前对象的所有成员
-        // note here，在此处创建出的新线程直接调用worker()函数
+        // 注意第一个参数为指针，最后一个参数this指针，用于传递当前对象的所有成员
+        // note here，在此处创建出的新线程直接调用worker()函数，执行回调函数，执行完成后不返回
         int ret = pthread_create(m_threads + i, NULL, worker, this);
         if (ret != 0) {
             delete[] m_threads;
@@ -80,8 +76,8 @@ threadpool<T>::~threadpool() {
 // 主线程调用，往请求队列添加新的待处理任务
 // 生产者
 template <typename T>
-bool threadpool<T>::append(T *request) {
-    /*操作共享队列一定得加锁，因为它被所以线程共享*/
+bool threadpool<T>::append(T* request) {
+    /*操作共享队列一定得加锁，因为它被所有线程共享*/
     m_queuelocker.lock();
 
     if (m_workqueue.size() >= m_max_request) {
@@ -99,8 +95,8 @@ bool threadpool<T>::append(T *request) {
 }
 
 template <typename T>
-void *threadpool<T>::worker(void *arg) {
-    threadpool *pool = (threadpool *)arg;
+void* threadpool<T>::worker(void* arg) {
+    threadpool* pool = (threadpool*)arg;
     pool->run();
     return pool;
 }
@@ -119,7 +115,7 @@ void threadpool<T>::run() {
             continue;
         }
         // 工作线程从请求队列上取下一个任务，然后调用process函数处理
-        T *request = m_workqueue.front();
+        T* request = m_workqueue.front();
         m_workqueue.pop_front();
         m_queuelocker.unlock();
 

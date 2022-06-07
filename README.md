@@ -26,15 +26,15 @@
 .  
 ├── bin&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;可执行文件  
 │   └── server  
-├── build     
+├── build&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Makefile  
 │   └── makefile  
 ├── log&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;存放日志文件       
-├── resources&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;静态资源  
+├── resources&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 静态资源  
 │   ├── favicon.ico  
 │   ├── homePage.html  
 │   ├── loginError.html  
 │   ├── ...  
-├── src&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;源代码  
+├── src&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 源代码  
 │   ├── http  
 │   │   ├── http_conn.cpp  
 │   │   ├── http_conn.h  

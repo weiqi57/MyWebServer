@@ -89,7 +89,7 @@ void mylog::write_log(int level, const char* format, ...) {
 
     m_mutex.lock();
     m_count_lines++;
-    // 日志不是今天 或 写入的日志行数是最大行的倍数(?)
+    // 日志不是今天 或 写入的日志行数是最大行的倍数
     if (m_today != sys_time_tm->tm_mday || m_count_lines % m_log_max_line == 0) {
         fflush(m_fp);
         // 关闭旧的文件描述符，需要创建新的日志文件
@@ -149,4 +149,17 @@ void mylog::flush(void) {
     m_mutex.lock();
     fflush(m_fp);
     m_mutex.unlock();
+}
+
+void* mylog::async_write_log() {
+    string single_log;
+    // 从阻塞队列中取出一条日志内容，写入到文件m_fp中
+    while (m_log_queue->dequeue(single_log)) {
+        m_mutex.lock();
+        // fputs将single_log写入到m_fp
+        fputs(single_log.c_str(), m_fp);
+        m_mutex.unlock();
+        LOG_DEBUG("async in while loop, finish a log, wait for next log");
+    }
+    return NULL;
 }
