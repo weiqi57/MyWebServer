@@ -16,8 +16,7 @@ class sqlConnPool {
         static sqlConnPool instance;
         return &instance;
     }
-
-    sqlConnPool();
+    
     ~sqlConnPool();
 
     void initSqlConnPool(string serverHost, string userName, string passwd, string dbName, int maxConnNum, int closeLog);
@@ -26,6 +25,9 @@ class sqlConnPool {
     bool releaseAsqlConn(MYSQL* conn);
 
     void destorySqlConnPool();
+
+private:
+    sqlConnPool();
 
    private:
     // 最大连接数

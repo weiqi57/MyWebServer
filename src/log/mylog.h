@@ -39,7 +39,7 @@ class mylog {
 
    private:
     // 路径名
-    char dir_name[128];
+    string dir_name;
     // log文件名
     char log_name[128];
 

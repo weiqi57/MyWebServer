@@ -7,7 +7,7 @@ int main(int argc, char* argv[]) {
     int threadNum = 8;  // 线程池线程数量
 
     // 日志信息
-    int logMode = 1;   // 写日志方式，0同步写，1异步写
+    int logMode = 0;   // 写日志方式，0同步写，1异步写
     int closeLog = 0;  // 是否关闭日志功能(1关闭，0不关闭，用于webbench)
 
     //数据库信息

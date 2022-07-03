@@ -44,18 +44,18 @@ bool mylog::init(const char* file_name, int close_log, int max_queue_size, int l
     time_t t = time(NULL);
     struct tm* sys_time_tm = localtime(&t);
 
-    string log_path = "/home/v7/linuxLearning/webServer/log/";
-    char log_full_name[256] = {0};
+    dir_name = "/home/v7/linuxLearning/webServer/log/";
+    // char log_full_name[256] = {0};
     // int snprintf(char *str, size_t size, const char *format, ...)
     // 将可变参数(...)按照 format 格式化成字符串，并将字符串复制到 str 中
     // size为要写入的字符的最大数目 2022-05-19-ServerLog
     // %02d是将数字按宽度为2输出，若数据位数不到2位，则左边补空格
-    snprintf(log_full_name, 255, "%d-%02d-%02d-%s", (sys_time_tm->tm_year) + 1900, (sys_time_tm->tm_mon) + 1, sys_time_tm->tm_mday, file_name);
+    snprintf(log_name, 255, "%d-%02d-%02d-%s", (sys_time_tm->tm_year) + 1900, (sys_time_tm->tm_mon) + 1, sys_time_tm->tm_mday, file_name);
 
     m_today = sys_time_tm->tm_mday;
     // "a"追加到一个文件。写操作向文件末尾追加数据。如果文件不存在，则创建文件
-    string log_file = log_path + log_full_name;
-    std::cout << "log_file is :" << log_file << std::endl;
+    string log_file = dir_name + log_name;
+
     m_fp = fopen(log_file.c_str(), "a");
     if (m_fp == NULL) {
         return false;
@@ -98,18 +98,20 @@ void mylog::write_log(int level, const char* format, ...) {
         char tail[16] = {0};
         snprintf(tail, 255, "%d_%02d_%02d_", (sys_time_tm->tm_year) + 1900, (sys_time_tm->tm_mon) + 1, sys_time_tm->tm_mday);
 
-        char new_log[256] = {0};
+        char new_log_name[256] = {0};
         // 如果时间不是今天，则创建今天的日志，同时更新m_today和m_count
         if (m_today != sys_time_tm->tm_mday) {
-            snprintf(new_log, 255, "%s%s%s", dir_name, tail, log_name);
+            snprintf(new_log_name, 255, "%s%s%s", dir_name, tail, log_name);
             m_today = sys_time_tm->tm_mday;
             m_count_lines = 0;
         }
         // 超过了最大行，在之前的日志名基础上加后缀, m_count/m_split_lines
         else {
-            snprintf(new_log, 255, "%s%s%s_%lld", dir_name, tail, log_name, m_count_lines / m_log_max_line);
+            snprintf(new_log_name, 255, "%s%s%s_%lld", dir_name, tail, log_name, m_count_lines / m_log_max_line);
         }
-        m_fp = fopen(new_log, "a");
+        // string new_log_file = dir_name + new_log_name;
+
+        m_fp = fopen(new_log_name, "a");
     }
     m_mutex.unlock();
 
