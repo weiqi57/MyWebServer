@@ -657,7 +657,7 @@ bool http_conn::add_content(const char* content) {
 
 // 循环读取客户数据，直到无数据可读或对方关闭连接
 // 读取到m_read_buffer中，并更新m_read_idx
-bool http_conn::read() {
+bool http_conn::read_once() {
     if (m_read_idx >= READ_BUFFER_SIZE) {
         return false;
     }
@@ -685,7 +685,7 @@ bool http_conn::read() {
 }
 
 // 写HTTP响应
-bool http_conn::write() {
+bool http_conn::write_once() {
     int temp = 0;
 
     //若要发送的数据长度为0,表示响应报文为空

@@ -250,7 +250,7 @@ void webServer::dealRead(int sockfd) {
     timerClass* temp_timer = usersTimerData[sockfd].timer;
 
     // proactor
-    if (users[sockfd].read()) {
+    if (users[sockfd].read_once()) {
         LOG_INFO("dealRead with the client(%s)", inet_ntoa(users[sockfd].get_address()->sin_addr));
         // 将读取到的数据封装成一个请求对象并插入请求队列
         m_pool->append(users + sockfd);
@@ -271,7 +271,7 @@ void webServer::dealWrite(int sockfd) {
     timerClass* temp_timer = usersTimerData[sockfd].timer;
 
     // proactor
-    if (users[sockfd].write()) {
+    if (users[sockfd].write_once()) {
         LOG_INFO("dealWrite to the client(%s)", inet_ntoa(users[sockfd].get_address()->sin_addr));
 
         // 若有数据传输，则将定时器往后延迟3个单位

@@ -87,9 +87,9 @@ class http_conn {
     // 处理客户请求
     void process();
     // 循环读取客户数据，直到无数据可读或对方关闭连接
-    bool read();
+    bool read_once();
     // 响应报文写入函数
-    bool write();
+    bool write_once();
 
     sockaddr_in* get_address() { return &m_address; }
 
