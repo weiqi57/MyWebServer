@@ -10,7 +10,7 @@
 ├── lock &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;线程同步机制包装类  
 │   ├── locker.h  
 │   └── README.md  
-├── log &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;同步/异步日志系统 
+├── log &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;同步/异步日志系统  
 │   ├── blockqueue.h  
 │   ├── mylog.cpp  
 │   ├── mylog.h  
